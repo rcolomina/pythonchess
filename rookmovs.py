@@ -76,19 +76,10 @@ def listTargetsRook(gameNode,piece):
     
     coord=piece.coordenates
     
-    # Horizontal
-    horizontalTargets=[piece]  # piece is included as reference on the list of targets
-
     # filtering pieces on the same row
-    for p in gameNode.allPieces:
-        pY=p.coordenates[1]
-        pieceY=coord[1]
-        if pY==pieceY and p.colour()!=piece.colour():
-            horizontalTargets.append(p)
-            
-            
+    horizontalTargets=[p for p in gameNode.allPieces if p.coordenates[1]==coord[1]]
     #for p in horizontalTargets:
-       # print "horizontalTargets:",p.type," ",p.coordenates
+    #    print "horizontalTargets:",p.type," ",p.coordenates
     
     horizontalTargets.sort(key=lambda x:x.coordenates,reverse=False)
 
@@ -115,18 +106,10 @@ def listTargetsRook(gameNode,piece):
     
                 
     # Vertical
-    verticalTargets=[piece]  # piece is included as reference on the list of targets
-    for p in gameNode.allPieces:
-        #print "gameNode.allPieces:",p.coordenates," ",p.type
-        if p.coordenates[0]==coord[0] and p.colour()!=piece.colour():
-            verticalTargets.append(p)
+    verticalTargets=[p for p in gameNode.allPieces if p.coordenates[0]==coord[0]]
 
     verticalTargets.sort(key=lambda x:x.coordenates,reverse=False)
 
-    #for p in verticalTargets:
-     #   print "VerticalTargets:",p.type
-#    print "VerticalTargets",verticalTargets
-        
     if len(verticalTargets)>0:        
         if piece in verticalTargets:
             index = verticalTargets.index(piece)
