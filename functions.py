@@ -1,25 +1,13 @@
 from rookmovs import *
 from bishopmovs import *
-
-def listMovQueen(coord,ocupyCells):
-    listMovs=[]
+from queenmovs import *
     
-    coorx=coord[0]
-    coory=coord[1]
 
-    # Movs like a Rook
-    rookMovs=listMovRook(coord,ocupyCells)
-    
-    # Movs like a Bishop
-    bishopMovs=listMovBishop(coord,ocupyCells)
-    
-    listMovs.extend(rookMovs)
-    listMovs.extend(bishopMovs)
-    return listMovs
-
-
-
+# List of Knight movements 
 def listMovKnight(coord,ocupyCells):
+
+    maxsize=5 # max size gameboard
+    
     l=[]
     x=coord[0]
     y=coord[1]
@@ -34,7 +22,7 @@ def listMovKnight(coord,ocupyCells):
     
     lfinal=[]
     for p in l:
-        if p[0]>0 and p[0]<5 and p[1]>0 and p[1]<5:
+        if p[0]>0 and p[0]<maxsize and p[1]>0 and p[1]<maxsize:
             lfinal.append(p)
 
     return [x for x in lfinal if x not in ocupyCells]
@@ -60,15 +48,21 @@ def genListMovsPiece(gameNode,piece):
     if piece.type=="n" or piece.type=="N":
         listMovsPiece=listMovKnight(coord,occupy)
 
-    # Adding capturing movements
-    listTargets=[]
+    # Getting pieces for capturing movements
+    listTargetsPieces=[]
     if piece.type=="r" or piece.type=="R":
-        listTargets=listTargetsRook(gameNode,piece)
-
-
+        listTargetsPieces=listTargetsRook(gameNode,piece)
+    if piece.type=="b" or piece.type=="B":
+        listTargetsPieces=listTargetsBishop(gameNode,piece)
+    if piece.type=="q" or piece.type=="Q":
+        listTargetsPieces=listTargetsQueen(gameNode,piece)
+    if piece.type=="n" or piece.type=="N":
+        listTargetsPieces=listTargetsKnight(gameNode,piece)
+                
     # Adding posible capturing movements
-    listMovsPiece.extend(listTargets)
-            
+    for p in listTargetsPiece:
+        listMovsPiece.append(p.coordenates)
+                    
     return listMovsPiece
 
 def checkPieceMovValid(gameNode,piece,mov):
@@ -79,7 +73,6 @@ def checkPieceMovValid(gameNode,piece,mov):
         if m==mov:
             return True
     return False
-
 
 def genListNextGameNodesForcingColor(gameNode,color):
     listgameNodes=[]
@@ -94,6 +87,7 @@ def genListNextGameNodesForcingColor(gameNode,color):
         #print "listMovsPiece:",listMovsPiece
     return listgameNodes
 
+# Return (1==White Win / 2==Black Win / 3==Draw)
 def Utility(gameNode):
     if gameNode.checkWhiteWin():
         return 1
