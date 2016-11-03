@@ -5,12 +5,7 @@ from functions import *
 ## Minimax algorithm
 def MinMax(gameNode,depth,maxPlayer):
 
-
-    #if gameNode.turnNumber==2:
-     #   gameNode.draw()
-
-    
-    result=Utility(gameNode)
+    result=gameNode.utility()
     if depth==0:
         return result
     
