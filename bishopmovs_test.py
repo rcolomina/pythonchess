@@ -2,8 +2,6 @@
 
 from piece import Piece
 from gameNode import GameNode        
-#from functions import *
-from minmax import MinMax
 from bishopmovs import *
 
 print "Checking GameNode class constructur"
