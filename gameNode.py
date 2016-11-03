@@ -112,8 +112,7 @@ class GameNode:
         if self.colourPlayer=="black":
             colorNextPlayer="white"
         else:
-            if self.colourPlayer=="white":
-                colorNextPlayer="black"
+            colorNextPlayer="black"
 
         # Generate new list due to move piece into coordenates mov
         newListPiecesWhite=self.genListPiecesWhite(piece,mov)
@@ -131,5 +130,14 @@ class GameNode:
         if self.colourPlayer=="black":
             return self.listPiecesBlack
         else:
-            if self.colourPlayer=="white":
-                return self.listPiecesWhite
+            return self.listPiecesWhite
+
+
+    def utility(self):
+        if self.checkWhiteWin():
+            return 1
+        else:
+            if self.checkBlackWin():
+                return -1
+            else:
+                return 0        
