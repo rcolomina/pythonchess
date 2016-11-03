@@ -2,7 +2,6 @@ from rookmovs import *
 from bishopmovs import *
 from queenmovs import *
     
-
 # List of Knight movements 
 def listMovKnight(coord,ocupyCells):
 
@@ -11,25 +10,18 @@ def listMovKnight(coord,ocupyCells):
     l=[]
     x=coord[0]
     y=coord[1]
-    l.append([x+1,y+2])
-    l.append([x+2,y+1])
-    l.append([x+1,y-2])
-    l.append([x+2,y-1])
-    l.append([x-1,y-2])
-    l.append([x-2,y-1])
-    l.append([x-1,y+2])
-    l.append([x-2,y+1])
+    l=[[x+1,y+2],[x+2,y+1],[x+1,y-2],[x+2,y-1],[x-1,y-2],[x-2,y-1],[x-1,y+2],[x-2,y+1]]
     
     lfinal=[]
     for p in l:
         if p[0]>0 and p[0]<maxsize and p[1]>0 and p[1]<maxsize:
             lfinal.append(p)
 
-    return [x for x in lfinal if x not in ocupyCells]
-
+    return [p for p in lfinal if p not in ocupyCells]
 
 # Accept a gamenode and a piece returning its list of movements
 def genListMovsPiece(gameNode,piece):
+    
     listMovsPiece=[]
     #occupy=[gameNode.listCoordsWhite
      #       if piece.type.isupper() else gameNode.listCoordsBlack].pop()
@@ -56,11 +48,11 @@ def genListMovsPiece(gameNode,piece):
         listTargetsPieces=listTargetsBishop(gameNode,piece)
     if piece.type=="q" or piece.type=="Q":
         listTargetsPieces=listTargetsQueen(gameNode,piece)
-    if piece.type=="n" or piece.type=="N":
-        listTargetsPieces=listTargetsKnight(gameNode,piece)
+#    if piece.type=="n" or piece.type=="N":
+#        listTargetsPieces=listTargetsKnight(gameNode,piece)
                 
     # Adding posible capturing movements
-    for p in listTargetsPiece:
+    for p in listTargetsPieces:
         listMovsPiece.append(p.coordenates)
                     
     return listMovsPiece
@@ -73,6 +65,8 @@ def checkPieceMovValid(gameNode,piece,mov):
         if m==mov:
             return True
     return False
+
+
 
 def genListNextGameNodesForcingColor(gameNode,color):
     listgameNodes=[]
@@ -87,21 +81,12 @@ def genListNextGameNodesForcingColor(gameNode,color):
         #print "listMovsPiece:",listMovsPiece
     return listgameNodes
 
-# Return (1==White Win / 2==Black Win / 3==Draw)
-def Utility(gameNode):
-    if gameNode.checkWhiteWin():
-        return 1
-    else:
-        if gameNode.checkBlackWin():
-            return -1
-        else:
-            return 0        
         
 def genListNextGameNodes(gameNode):
     listgameNodes=[]
 
     # If game is finished not expand more
-    val=Utility(gameNode)
+    val=gameNode.utility();
     if val!=0:
         return listgameNodes
     
