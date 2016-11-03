@@ -2,11 +2,14 @@
 
 from piece import Piece
 from gameNode import GameNode        
-#from functions import *
 from minmax import MinMax
 from rookmovs import *
 
-print "Checking GameNode class constructur"
+
+listMovs=listMovRook([1,2],[[2,2]])
+assert(listMovs==[[1,1],[1,3],[1,4]])
+print "checking listMovRook [OK]"
+
 
 listPiecesWhite=[]
 listPiecesBlack=[]
@@ -40,7 +43,6 @@ for p in listTargetsRook(gameNode,w3):
 print "Targets White Rook (r) at [4,1] -> "
 for p in listTargetsRook(gameNode,b3):
     print p.type," ",p.coordenates
-
 
 print "Targets White Rook (R) at [3,3] -> "
 for p in listTargetsRook(gameNode,w6):
