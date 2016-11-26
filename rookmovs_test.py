@@ -30,6 +30,7 @@ listPiecesWhite=[w1,w2,w3,w4,w5,w6]
 listPiecesBlack=[b1,b2,b3,b4]
 
 gameNode=GameNode(listPiecesWhite,listPiecesBlack,"white")
+print gameNode.draw()
 
 print "Check Rook Targets"
 print "Targets Black Rook (r) at [2,1] -> "
@@ -47,3 +48,9 @@ for p in listTargetsRook(gameNode,b3):
 print "Targets White Rook (R) at [3,3] -> "
 for p in listTargetsRook(gameNode,w6):
     print p.type," ",p.coordenates
+
+
+
+listMovs=listMovRook([1,2],[[3,2]])
+assert(listMovs==[[2,2],[1,1],[1,3],[1,4]])
+print "Checked movements for Rook on [1,2] with [2,2] occupy"
