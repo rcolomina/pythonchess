@@ -3,7 +3,7 @@
 from piece import Piece
 from gameNode import GameNode        
 
-# Inputs: This function accept a coordenate of a bishop piece located at coord and a set of 
+# Inputs: This function accepts a coordenate of a bishop piece located at coord and a set of 
 #         all pieces of the game ocupy
 # Return: A list of all possible movements i.e pairs [x,y] not capturing pieces are returnet
 def listMovBishop(coord,ocupyCells):
@@ -66,7 +66,8 @@ def listMovBishop(coord,ocupyCells):
 
 
 
-# Inputs: This function accept a coordenate of bishop piece located at coord and a game node
+# Inputs: This function accepts a game node as first arguments
+#         As second arg. it accets a bishop piece type
 #
 # Return: A list of all possible adversary captures for an input bishop i.e pairs [x,y] 
 def listTargetsBishop(gameNode,piece):        
