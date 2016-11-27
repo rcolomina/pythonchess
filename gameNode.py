@@ -57,15 +57,19 @@ class GameNode:
             print "Next player:",self.colourPlayer
         else:
             print "TERMINAL NODE"
-                    
-    # Check if Black has still its queen
+
+    def draw_board(self):
+        print "** TURN GAME ** :", self.turnNumber
+        
+        
+    # Check if Black still has its queen
     def checkWhiteWin(self):
         for piece in self.listPiecesBlack:
             if piece.type=="q":
                 return False
         return True
     
-    # Check if White has still its queen
+    # Check if White still has its queen
     def checkBlackWin(self):
         for piece in self.listPiecesWhite:
             if piece.type=="Q":
