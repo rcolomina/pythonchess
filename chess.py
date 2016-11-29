@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from piece import Piece
 from gameNode import GameNode        
 from functions import *
