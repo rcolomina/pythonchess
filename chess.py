@@ -4,25 +4,6 @@ from functions import *
 from minmax import MinMax
 
 ## TEST 0: Checking movements for Rook, Bishop, Knight and Queen
-print "TEST 0"
-
-#piece=['Q',[2,2]]
-#coord=[2,2]
-#listCells=[[1,1],[1,2],[4,2],[1,4],[3,3],[1,3],[2,1],[3,2]]
-#print "listMovRook:",listMovRook(coord,listCells)
-#print "listMovBishop:",listMovBishop(coord,listCells)
-#print "listMovQueen:",listMovQueen(coord,listCells)
-#coord=[1,4]
-#listCells=[[1,4]]
-#print "listMovKnight:",listMovKnight(coord,listCells)
-
-print "Checked movements for Rook on [1,2] with [2,2] occupy"
-listMovs=listMovRook([1,2],[[3,2]])
-assert(listMovs==[[2,2],[1,1],[1,3],[1,4]])
-print "Checked movements for Rook on [1,2] with [2,2] occupy"
-
-
-#print genListMovsPiece(gameNode,p1)
 
 listPiecesWhite=[]
 listPiecesBlack=[]
@@ -57,8 +38,8 @@ gameNode=GameNode(listPiecesWhite,listPiecesBlack,"white")
 
 
 
-# TEST 4: Game succesors
-print "TEST 4"
+# TEST 1: Testing Game Succesors
+print "TEST 1"
 
 listPiecesWhite=[]
 listPiecesBlack=[]
@@ -104,49 +85,4 @@ game3=game2.succesGameActionMove(wB,[1,1])
 #game3.draw()
 
 
-# Test 5: Apply MiniMax to gameNode
-print "TEST 5"
-depth=4
-#print MinimaxDecision(gameNode,depth)
-#print MinMax(gameNode,depth,True)
-
-listPiecesWhite=[]
-listPiecesBlack=[]
-w1=Piece('Q',[3,1])
-w2=Piece('N',[3,2])
-w3=Piece('N',[4,2])
-w4=Piece('B',[1,3])
-listPiecesWhite.append(w1)
-listPiecesWhite.append(w2)
-listPiecesWhite.append(w3)
-listPiecesWhite.append(w4)
-
-b1=Piece('q',[1,2])
-listPiecesBlack.append(b1)
-
-gameNode=GameNode(listPiecesWhite,listPiecesBlack,"white")
-
-depth=5
-#print MinimaxDecision(gameNode,depth)
-
-
-
-
-listPiecesWhite=[]
-listPiecesBlack=[]
-w1=Piece('Q',[2,2])
-w2=Piece('N',[3,2])
-w3=Piece('N',[4,2])
-w4=Piece('B',[1,3])
-listPiecesWhite.append(w1)
-listPiecesWhite.append(w2)
-listPiecesWhite.append(w3)
-listPiecesWhite.append(w4)
-
-b1=Piece('q',[1,2])
-listPiecesBlack.append(b1)
-
-#gameNode=GameNode(listPiecesWhite,listPiecesBlack,"black")
-#gameNode.draw()
-#print genListMovsPiece(gameNode,b1)
 
