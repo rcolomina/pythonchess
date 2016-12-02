@@ -6,23 +6,21 @@ from functions import *
 from minmax import MinMax
 
 ## TEST 0: Checking movements for Rook, Bishop, Knight and Queen
-
 listPiecesWhite=[]
 listPiecesBlack=[]
 p1=Piece('Q',[2,1])
-#p2=Piece('N',[2,2])
+p2=Piece('N',[2,2])
 p5=Piece('N',[2,4])
 listPiecesWhite.append(p1)
-#listPiecesWhite.append(p2)
+listPiecesWhite.append(p2)
 listPiecesWhite.append(p5)
-
 
 b1=Piece('q',[1,4])
 b2=Piece('r',[2,3])
 b3=Piece('n',[2,2])
-listPiecesBlack.append(p1)
-listPiecesBlack.append(p2)
-listPiecesBlack.append(p3)
+listPiecesBlack.append(b1)
+listPiecesBlack.append(b2)
+listPiecesBlack.append(b3)
 
 gameNode=GameNode(listPiecesWhite,listPiecesBlack,"white")
 
@@ -41,7 +39,7 @@ gameNode=GameNode(listPiecesWhite,listPiecesBlack,"white")
 
 
 # TEST 1: Testing Game Succesors
-print "TEST 1"
+#print "TEST 1"
 
 listPiecesWhite=[]
 listPiecesBlack=[]
@@ -80,6 +78,7 @@ listPieces=game1.genListPiecesBlack(bq,move)
 game2=game1.succesGameActionMove(bq,move) #
 #game2.draw()
 assert(bq not in game2.listPiecesBlack)
+print "Assertions OK: Black queen is not in list of black"
 
 wB=Piece('B',[2,2])
 #print "Possible movs for a white bishop:",genListMovsPiece(game2,wB)
